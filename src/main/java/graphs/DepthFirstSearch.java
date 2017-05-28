@@ -4,7 +4,9 @@ import trees.TreeNode;
 
 import trees.NodeColor;
 import trees.TreeUtils;
-
+/*
+ * of a tree
+ */
 public class DepthFirstSearch {
 	public static void main(String[] args) {
 		TreeNode root = TreeUtils.getTree();
