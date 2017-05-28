@@ -1,5 +1,4 @@
 package trees;
-import java.awt.Color;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -15,14 +14,14 @@ public class DepthOfTree {
 		int depth = 0;
 		
 		Queue<TreeNode> q = new LinkedList<TreeNode>();
-		root.color = Color.GRAY;
+		root.color = NodeColor.GRAY;
 		root.distFromRoot = 1;
 		q.add(root);
 		
 		while(!q.isEmpty()){
 			TreeNode remNode = q.poll();
-			if(remNode.left!=null && remNode.left.color == Color.WHITE){
-				remNode.left.color = Color.GRAY;
+			if(remNode.left!=null && remNode.left.color == NodeColor.WHITE){
+				remNode.left.color = NodeColor.GRAY;
 				remNode.left.parent = remNode;
 				int thisNodesDistanceFromRoot = remNode.distFromRoot+1;
 				remNode.left.distFromRoot = thisNodesDistanceFromRoot;
@@ -30,8 +29,8 @@ public class DepthOfTree {
 				q.add(remNode.left);
 			}
 			
-			if(remNode.right!=null && remNode.right.color == Color.WHITE){
-				remNode.right.color = Color.GRAY;
+			if(remNode.right!=null && remNode.right.color == NodeColor.WHITE){
+				remNode.right.color = NodeColor.GRAY;
 				remNode.right.parent = remNode;
 				int thisNodesDistanceFromRoot = remNode.distFromRoot+1;
 				remNode.right.distFromRoot = thisNodesDistanceFromRoot;
@@ -39,7 +38,7 @@ public class DepthOfTree {
 				q.add(remNode.right);
 			}
 			
-			remNode.color = Color.BLACK;
+			remNode.color = NodeColor.BLACK;
 		}
 		
 		return depth;
