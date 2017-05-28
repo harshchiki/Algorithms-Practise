@@ -1,31 +1,97 @@
 package trees;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 public class LowestCommonAncestor {
-	static Set<List<TreeNode>> paths = new HashSet<List<TreeNode>>();
-
+	public static Set<List<TreeNode>> paths = new HashSet<List<TreeNode>>();
+//	public static TreeNode node1 = new TreeNode(4);
+//	public static TreeNode node2 = new TreeNode(7);
+	static TreeNode lowestCommonAncestor;
 	public static void main(String[] args) {
 		TreeNode root = TreeUtils.getTree();
+		
+		findLowestCommonAncestor(root, new TreeNode(4), new TreeNode(7));
 	}
-	
-	static void setAllPathsToLeaves(TreeNode root){
+
+	static void findLowestCommonAncestor(TreeNode root, TreeNode node1, TreeNode node2){
+		System.out.println("Paths: ");
+		setAllPathsToLeaves(root, node1, node2);
+		System.out.println();
+		switch(paths.size()){
+		case 0:
+			System.out.println("None of the nodes found");
+			break;
+		case 1:
+			List<TreeNode> path = paths.iterator().next();
+			int index = -1;
+			for(TreeNode node : path){
+				index++;
+				if(node.equals(node1)|| node.equals(node2)){
+					lowestCommonAncestor = node;
+				}
+			}
+			break;
+		case 2:
+			Iterator<List<TreeNode>> pathIterator= paths.iterator();
+			List<TreeNode> list1 = pathIterator.next();
+			List<TreeNode> list2 = pathIterator.next();
+			
+			Iterator<TreeNode> list1Iterator = list1.iterator();
+			Iterator<TreeNode> list2Iterator = list2.iterator();
+			
+			TreeNode next1, next2, prev1 = null, prev2;
+			
+			while(list1Iterator.hasNext() && list2Iterator.hasNext()){
+				next1 = list1Iterator.next();
+				next2 = list2Iterator.next();
+				
+				if(!next1.equals(next2)){
+					lowestCommonAncestor = prev1;
+					System.out.println("Lowest Common Ancestor = "+lowestCommonAncestor.data);
+					break;
+				}
+				
+				prev1 = next1;
+				prev2 = next2;
+			}
+			
+			break;
+		default:
+			System.out.println("You code broke!");
+		}
+	}
+
+	static void setAllPathsToLeaves(TreeNode root, TreeNode node1, TreeNode node2){
 		TreeNode[] path = new TreeNode[1000];
 		int pathLen = 0;
-		
-		workoutAllPaths(root, path, pathLen);
-		
+
+		workoutAllPathsContainingRequiredNodes(root, path, pathLen, node1, node2);
+
+		paths.stream()
+		.forEach((list) ->{
+			list.stream()
+			.forEach(
+					(node) -> System.out.print(node.data +" ")
+					);
+			System.out.println();
+		}
+				);
+
 	}
-	
-	static void workoutAllPaths(TreeNode root, TreeNode[] path, int pathLen){
+
+	static void workoutAllPathsContainingRequiredNodes(TreeNode root, TreeNode[] path, int pathLen,
+			TreeNode node1, TreeNode node2){
 		if(root == null) return;
-		
+
 		path[pathLen++] = root;
-		
-		if(root.left == null && root.right == null){
+
+
+		//		if(root.left == null && root.right == null){
+		if(root.equals(node1) || root.equals(node2)){
 			// this is a leaf. path found - add
 			List<TreeNode> lst = new LinkedList<>();
 			for(int i = 0;i<pathLen;i++){
@@ -33,9 +99,9 @@ public class LowestCommonAncestor {
 			}
 			paths.add(lst);
 		}else{
-			workoutAllPaths(root.left, path, pathLen);
-			workoutAllPaths(root.right, path, pathLen);
+			workoutAllPathsContainingRequiredNodes(root.left, path, pathLen, node1, node2);
+			workoutAllPathsContainingRequiredNodes(root.right, path, pathLen, node1, node2);
 		}
-		
+
 	}
 }

@@ -29,6 +29,7 @@ public class PrintAllPathsOfBinaryTreeFromRoot {
 				);
 	}
 	
+	
 	static void printAllPaths(TreeNode root, TreeNode[] path, int pathLen){
 		if(root == null) return;
 		
