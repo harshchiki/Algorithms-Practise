@@ -16,6 +16,9 @@ import java.util.Stack;
  * Strategy: BFS from knight's position to find the destination.
  * Validation of points should be done.
  * 
+ * Time Complexity: O(V + E)
+ * Space Complexity: O(V) to store the shortest path.
+ * 
  */
 public class ChessKnightProblem {
 	public static void main(String[] args) {
