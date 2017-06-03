@@ -2,8 +2,6 @@ package trees;
 
 import java.util.Stack;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
 public class IterativeTraversalsOfBinaryTree {
 	public static void main(String[] args) {
 		TreeNode root = TreeUtils.getTree();
