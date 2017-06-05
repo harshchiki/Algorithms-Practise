@@ -17,6 +17,7 @@ public class DepthFirstSearch {
 		n1.adjNodes.add(n3);
 		
 		n2.adjNodes.add(n4);
+		n2.adjNodes.add(n1);
 		
 		n3.adjNodes.add(n5);
 		
@@ -29,7 +30,9 @@ public class DepthFirstSearch {
 			return;
 		}
 		
+		
 		if(!visited.contains(node)){
+			visited.add(node);
 			System.out.print(node.data+" ");
 			for(GraphNode n : node.adjNodes){
 				dfs(n,visited);

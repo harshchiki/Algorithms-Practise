@@ -19,10 +19,10 @@ class GraphNode{
 		return "Data = "+this.data+" distanceFromStart = " +distanceFromStart+" parent = "+parent;
 	}
 	
-	@Override
-	public boolean equals(Object o){
-		return this.data == ((GraphNode) o).data;
-	}
+//	@Override
+//	public boolean equals(Object o){
+//		return this.data == ((GraphNode) o).data;
+//	}
 	
 	@Override
 	public int hashCode(){
