@@ -1,64 +1,39 @@
 package graphs;
 
-import trees.TreeNode;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 
-import trees.NodeColor;
-import trees.TreeUtils;
-/*
- * of a tree
- */
 public class DepthFirstSearch {
 	public static void main(String[] args) {
-		TreeNode root = TreeUtils.getTree();
-		TreeUtils.printInOrder(root);
-		System.out.println();
-		dfs(root);
+		GraphNode n1 = new GraphNode(1);
+		GraphNode n2 = new GraphNode(2);
+		GraphNode n3 = new GraphNode(3);
+		GraphNode n4 = new GraphNode(4);
+		GraphNode n5 = new GraphNode(5);
+		
+		n1.adjNodes.add(n2);
+		n1.adjNodes.add(n3);
+		
+		n2.adjNodes.add(n4);
+		
+		n3.adjNodes.add(n5);
+		
+		new DepthFirstSearch().dfs(n1, new HashSet<GraphNode>());
+		
 	}
 	
-	static void dfs(TreeNode root){
-		initializeAllNodes(root);
-		
-		root.color = NodeColor.GRAY;
-		System.out.print(root.data+" ");
-		root.distFromRoot = 0;
-		root.parent = null;
-			
-		if(root.left != null && root.left.color == NodeColor.WHITE){
-			dfsVisit(root.left, root);
+	public void dfs(GraphNode node, Set<GraphNode> visited){
+		if(null == node){
+			return;
 		}
 		
-		if(root.right != null && root.right.color == NodeColor.WHITE){
-			dfsVisit(root.right, root);
+		if(!visited.contains(node)){
+			System.out.print(node.data+" ");
+			for(GraphNode n : node.adjNodes){
+				dfs(n,visited);
+			}
 		}
 	}
-	
-	static void dfsVisit(TreeNode root, TreeNode parent){
-		root.color = NodeColor.GRAY;
-		root.parent = parent;
-		root.distFromRoot = parent.distFromRoot+1;
-		
-		if(root.left != null && root.left.color == NodeColor.WHITE){
-			dfsVisit(root.left, root);
-		}
-		
-		if(root.right != null && root.right.color == NodeColor.WHITE){
-			dfsVisit(root.right, root);
-		}
-		
-		// coloring it black is not a mandatory step.
-		root.color = NodeColor.BLACK;
-		System.out.print(root.data+" ");
-	}
-	
-	static void initializeAllNodes(TreeNode root){
-		if(root == null) return;
-		
-		root.color = NodeColor.WHITE;
-		root.distFromRoot = Integer.MIN_VALUE;
-		root.parent = null;
-		initializeAllNodes(root.left);
-		initializeAllNodes(root.right);
-	}
-
-
 }
