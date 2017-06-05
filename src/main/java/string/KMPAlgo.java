@@ -19,7 +19,7 @@ public class KMPAlgo {
 					if(i == (p.length)){
 						System.out.println("Found at "+currentIndex);
 						
-						leftOverChars = t.length - currentIndex - p.length;
+						leftOverChars = t.length - (currentIndex + p.length);
 						currentIndex += i;
 						
 					}

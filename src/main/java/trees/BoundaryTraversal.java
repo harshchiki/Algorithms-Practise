@@ -38,6 +38,7 @@ public class BoundaryTraversal {
 					nextLevel.add(removedNode.right);
 				}	
 
+				// if removed Node is a leaf - print it as soon as you get
 				if(null == removedNode.left && null == removedNode.right){
 					System.out.print(removedNode.data+" ");
 				}
@@ -47,6 +48,7 @@ public class BoundaryTraversal {
 				@SuppressWarnings("unchecked")			
 				TreeNode first = ((List<TreeNode>)nextLevel).get(0);
 
+				// if first is not a leaf
 				if(!(first.left == null && first.right == null)){
 					System.out.print(first.data+" ");
 				}
