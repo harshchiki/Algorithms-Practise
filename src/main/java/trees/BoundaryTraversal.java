@@ -20,6 +20,10 @@ public class BoundaryTraversal {
 			return;
 		}
 
+		/*
+		 * Similar to level order traversal, we maintain this level and the next.
+		 * But also one more to remember the right boundary, if we go anti clockwise
+		 */
 		Stack<TreeNode> stackRightBoundary = new Stack<TreeNode>();
 
 		Queue<TreeNode> thisLevel = new LinkedList<TreeNode>();
@@ -57,6 +61,8 @@ public class BoundaryTraversal {
 					@SuppressWarnings("unchecked")
 					TreeNode last =  ((List<TreeNode>)nextLevel).get(nextLevel.size()-1);
 
+					// if this level contains multiple nodes (had it been 1, it already must have been printed)
+					// and if the last node at the level is not a leaf, push to the boundary
 					if(!first.equals(last) && !(last.left == null && last.right == null)){
 						stackRightBoundary.push(last);
 					}

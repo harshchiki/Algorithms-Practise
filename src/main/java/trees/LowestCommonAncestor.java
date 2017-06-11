@@ -8,13 +8,13 @@ import java.util.Set;
 
 public class LowestCommonAncestor {
 	public static Set<List<TreeNode>> paths = new HashSet<List<TreeNode>>();
-//	public static TreeNode node1 = new TreeNode(4);
-//	public static TreeNode node2 = new TreeNode(7);
 	static TreeNode lowestCommonAncestor;
 	public static void main(String[] args) {
 		TreeNode root = TreeUtils.getTree();
-		
-		findLowestCommonAncestor(root, new TreeNode(4), new TreeNode(7));
+		System.out.println("printing tree");
+		TreeUtils.printInOrder(root);
+		System.out.println("In order printed");
+		findLowestCommonAncestor(root, new TreeNode(5), new TreeNode(7));
 	}
 
 	static void findLowestCommonAncestor(TreeNode root, TreeNode node1, TreeNode node2){
@@ -69,8 +69,20 @@ public class LowestCommonAncestor {
 		TreeNode[] path = new TreeNode[1000];
 		int pathLen = 0;
 
+		System.out.println();
+		System.out.println("working out all the paths");
 		workoutAllPathsContainingRequiredNodes(root, path, pathLen, node1, node2);
-
+		System.out.println();
+		for(int i= 0;i<100;i++){
+			if(path[i] == null){
+				break;
+			}
+			System.out.print(path[i].data +" ");
+		}
+		
+		System.out.println();
+		System.out.println("paths printed");
+		
 		paths.stream()
 		.forEach((list) ->{
 			list.stream()
@@ -86,11 +98,12 @@ public class LowestCommonAncestor {
 	static void workoutAllPathsContainingRequiredNodes(TreeNode root, TreeNode[] path, int pathLen,
 			TreeNode node1, TreeNode node2){
 		if(root == null) return;
-
+		
+		
+		System.out.println("adding to path "+root.data+" at index"+(pathLen));
 		path[pathLen++] = root;
 
 
-		//		if(root.left == null && root.right == null){
 		if(root.equals(node1) || root.equals(node2)){
 			// this is a leaf. path found - add
 			List<TreeNode> lst = new LinkedList<>();

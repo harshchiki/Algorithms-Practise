@@ -2,14 +2,14 @@ package trees;
 
 public class CheckIfATreeIdBalancedOrNot {
 	public static void main(String[] args) {
-		BalTreeNode r1 = new BalTreeNode(1);
-		BalTreeNode r2 = new BalTreeNode(2);
-		BalTreeNode r3 = new BalTreeNode(3);
-		BalTreeNode r4 = new BalTreeNode(4);
-		BalTreeNode r5 = new BalTreeNode(5);
-		BalTreeNode r6 = new BalTreeNode(6);
-		BalTreeNode r7 = new BalTreeNode(7);
-		
+		TreeNode r1 = new TreeNode(1);
+		TreeNode r2 = new TreeNode(2);
+		TreeNode r3 = new TreeNode(3);
+		TreeNode r4 = new TreeNode(4);
+		TreeNode r5 = new TreeNode(5);
+		TreeNode r6 = new TreeNode(6);
+		TreeNode r7 = new TreeNode(7);
+		TreeNode r8 = new TreeNode(8);
 		
 		r1.left = r2;
 		r1.right = r3;
@@ -18,15 +18,17 @@ public class CheckIfATreeIdBalancedOrNot {
 		r2.right = r5;
 		
 		r5.left = r6;
+		r4.right = r8;
 		
-		r6.right = r7;
 		
+		TreeUtils.printInOrder(r1);
+		System.out.println();
 		checkIfTreeIsBalanced(r1);
 		
 		
 	}
 	
-	static int checkIfTreeIsBalanced(BalTreeNode root){
+	static int checkIfTreeIsBalanced(TreeNode root){
 		if(root == null){
 			return -1;
 		}
@@ -37,18 +39,19 @@ public class CheckIfATreeIdBalancedOrNot {
 		int depthOfThisNode = leftTreeDepth > rightTreeDepth ?  leftTreeDepth+1 : rightTreeDepth + 1;
 		
 		if(depthOfThisNode > 1){
-			System.out.println(root.data +" is not balanced, its depth = "+depthOfThisNode);
+			System.out.println(root.data +" is not balanced, its delta = "+depthOfThisNode
+					+" left depth = "+leftTreeDepth + " right depth = "+ rightTreeDepth);
 		}
 		
 		return depthOfThisNode;
 	}
 	
-	static class BalTreeNode{
-		int data;
-		BalTreeNode left, right;
-		int height;
-		public BalTreeNode(int data) {
-			this.data = data;
-		}
-	}
+//	static class TreeNode{
+//		int data;
+//		TreeNode left, right;
+////		int height;
+//		public TreeNode(int data) {
+//			this.data = data;
+//		}
+//	}
 }

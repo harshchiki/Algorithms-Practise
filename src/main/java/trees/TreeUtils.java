@@ -1,5 +1,6 @@
 package trees;
-import java.awt.Color;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TreeUtils {
 	public static void printInOrder(TreeNode node){
@@ -9,6 +10,20 @@ public class TreeUtils {
 		System.out.print(node.data +" ");
 		printInOrder(node.right);
 	}
+	
+	static void inOrderList(TreeNode root, List<TreeNode> list){
+		if(root == null) return;
+		
+		if(list == null){
+			System.out.println("list constructed");
+			list = new LinkedList<TreeNode>();
+		}
+		
+		inOrderList(root.left, list);
+		list.add(root);
+		inOrderList(root.right, list);
+	}
+	
 	
 	public static TreeNode getTree(){
 		TreeNode n1 = new TreeNode(1);

@@ -2,10 +2,25 @@ package string;
 
 public class KMPAlgo {
 	public static void main(String[] args) {
-		findMatches("hello world".toCharArray(), "world".toCharArray());
+		String pattern = "world";
+		String text = "hello world";
+		findMatchesUsingNaiveAlgo(text.toCharArray(), pattern.toCharArray());
 	}
 	
-	static void findMatches(char[] t, char[] p){
+	
+	
+	void populateLPS(String pattern, int[] lps){
+		char[] chars = pattern.toCharArray();
+		int length = chars.length;
+		lps = new int[length];
+		
+		
+	}
+	
+	
+	
+	// Naive ALgo O(mn), KMP is O(m+n)
+	static void findMatchesUsingNaiveAlgo(char[] t, char[] p){
 		int currentIndex = 0;
 		int leftOverChars = t.length;
 		

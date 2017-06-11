@@ -15,11 +15,11 @@ package trees;
  4.) Iterate through all the elements of the array, making each the root.
  5.) Use the left elements, and pass recursively to get count of left subtrees.
  6.) Use the right elements, and pass recursively to get count of right subtree.
- 7.) Count of tree with this i as root is max of (5) and (6)
+ 7.) Count of tree with this i as root is multiplication of no. of left and no.right
  
  */
 
-public class UniqueBSTFromSortedArray {
+public class NumberOfUniqueBSTFromSortedArray {
 
 	public static void main(String[] args) {
 		System.out.println(getNoOfUniqueBST(getSortedArray()));
@@ -46,7 +46,8 @@ public class UniqueBSTFromSortedArray {
 			int[] rightSubArray = new int[0];
 			rightSubArray = getSubArray(a,i+1,a.length-1);
 			noOfUniqueBSTRight = getNoOfUniqueBST(rightSubArray);
-			count += noOfUniqueBSTLeft > noOfUniqueBSTRight? noOfUniqueBSTLeft : noOfUniqueBSTRight;
+			count += noOfUniqueBSTLeft * noOfUniqueBSTRight;
+//			count += noOfUniqueBSTLeft > noOfUniqueBSTRight? noOfUniqueBSTLeft : noOfUniqueBSTRight;
 		}
 		return count;
 	}
