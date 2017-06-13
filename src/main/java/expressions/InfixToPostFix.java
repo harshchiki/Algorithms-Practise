@@ -19,6 +19,21 @@ public class InfixToPostFix {
 		obj.convert(exp.toCharArray());
 	}
 
+	/*
+	 * Algo:
+	 * for every character
+	 * 	- if is an operand add to postfix
+	 * 	- else
+	 * 		- if open brace - push to stack
+	 * 		- else if closing brace - pop contents until ( is peek - add popped to post fix - and pop off ( (dont add this)
+	 * 		- else if operator
+	 * 				- if stack is empty - push this to stack
+	 * 				- else TOS < this in preceedence - push to stack
+	 * 				- else TOS == this in preceedence - get association of this
+	 * 					 - if left to right - pop from stack and add to postfix, and this to stack
+	 * 					- else if right to left - push this to stack
+	 * 				- else TOS > this, pop stack and add to postfix, and push this to stack
+	 */
 	void convert(char[] infix){
 		Stack<Character> s = new Stack<>();
 		for(int i=0;i<infix.length;i++){
@@ -67,7 +82,9 @@ public class InfixToPostFix {
 								}
 							}else{
 								// comparison > 0, TOS has greater preceedence than this operator
-								postfix.add(s.pop());
+								if(!s.isEmpty()){
+									postfix.add(s.pop());
+								}
 								s.push(character);
 							}
 						}else{
