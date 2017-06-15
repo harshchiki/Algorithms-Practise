@@ -14,4 +14,9 @@ public class TreeNode{
 	public boolean equals(Object node){
 		return this.data == ((TreeNode)node).data;
 	}
+	
+	@Override
+	public String toString(){
+		return this.data+" ";
+	}
 }
