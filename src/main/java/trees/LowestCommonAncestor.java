@@ -97,6 +97,16 @@ public class LowestCommonAncestor {
 
 	static void workoutAllPathsContainingRequiredNodes(TreeNode root, TreeNode[] path, int pathLen,
 			TreeNode node1, TreeNode node2){
+		/*
+		path has to be an array, not a collection. It is will pathLen, that we hok thngs up
+			A
+		    B       C
+		  D   E   F   G
+		  paths would be like
+		            A
+			AB      AC
+	             ABD  ABE ACF  ACG   (how path array grows as we traverse down the tree
+		*/
 		if(root == null) return;
 		
 		
@@ -105,6 +115,14 @@ public class LowestCommonAncestor {
 
 
 		if(root.equals(node1) || root.equals(node2)){
+			/*
+			We are looking for paths containing the nodes node1 and node2, not all paths,
+			hence adding only those to lst (list of paths having node1 and node2)
+			
+			Since we care about the lowest common ancestor - their is no need to go further done this subtree 
+			- we could maintain a flag to remember if both have been found or not, otherwise, no point traversing
+			the whole tree
+			*/
 			// this is a leaf. path found - add
 			List<TreeNode> lst = new LinkedList<>();
 			for(int i = 0;i<pathLen;i++){
