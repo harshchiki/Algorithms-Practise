@@ -100,6 +100,9 @@ public class SegmentTreeApplications {
 	/* UPDATE THE VALUE OF AN ELEMENT
 	 * 
 	 * To update value at arrIndex in the main array with value val
+	 
+	 The leaf nodes represent the main array in fact -> hence an update should be done to the leaf node.
+	 Once done - change is propagated up to the root (using merge operations)
 	 */
 	void update(int[] tree, int treeIndex, int start, int end, int arrIndex, int val){
 		if(start == end){
