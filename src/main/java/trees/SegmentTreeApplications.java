@@ -10,21 +10,101 @@ public class SegmentTreeApplications {
 		/* Now the implementation of segment tree using an array 
 		 * (array representing segment tree */
 
-		int[] tree = new int[2*arr.length+1];
-		o.populateArrayAsSegmentTree(tree, arr, 0, arr.length-1, 0);
+		int[] sumSegmentTreeArray = new int[2*arr.length+1];
+		o.populateArrayAsSegmentTreeForSum(sumSegmentTreeArray, arr, 0, arr.length-1, 0);
 		System.out.println("Sum from 1 to 3 is: "
-				+o.getSumForRange(tree, 0, 0, arr.length-1, 1, 3));
-		o.update(tree, 0, 0, arr.length-1, 2, 6);
+				+o.getSumForRange(sumSegmentTreeArray, 0, 0, arr.length-1, 1, 3));
+		o.update(sumSegmentTreeArray, 0, 0, arr.length-1, 2, 6);
 		System.out.println("Sum from 1 to 3 after update is: "
-				+o.getSumForRange(tree, 0, 0, arr.length-1, 1, 3));
+				+o.getSumForRange(sumSegmentTreeArray, 0, 0, arr.length-1, 1, 3));
+		
+		
+		/*
+		 * For minimum
+		 */
+		int[] minSegmentTreeArray = new int[2*arr.length+1];
+		o.populateArrayAsSegmentTreeForMinimum(minSegmentTreeArray, arr, 0, arr.length-1, 0);
+		System.out.println("****************************");
+		System.out.println("****************************");
+		System.out.println("Min Seg tree");
+		for(int i : minSegmentTreeArray){
+			System.out.print(i+" ");
+		}
+		System.out.println();
+		System.out.println("Min from 1 to 3 are "+o.getMinimumForRange(minSegmentTreeArray, 0, 0, arr.length-1, 1, 3));
+		o.updateMinSegmentTreeArray(minSegmentTreeArray, 0, 0, arr.length-1, 2, -4);
+		System.out.println("Min from 1 to 3, after update is "+o.getMinimumForRange(minSegmentTreeArray, 0, 0, arr.length-1, 1, 3));
 	}
+	
+	
+	void updateMinSegmentTreeArray(int[] tree, int treeIndex, int start, int end, int arrIndex, int value){
+		if(start == end){
+			tree[treeIndex] = value;
+			return;
+		}
+		
+		int mid = start + (end-start)/2;
+		
+		if(arrIndex > mid){
+			updateMinSegmentTreeArray(tree, 2*treeIndex+2, mid+1, end, arrIndex, value);
+		}else{
+			updateMinSegmentTreeArray(tree, 2*treeIndex+1, start, mid, arrIndex, value);
+		}
+		
+		int left = tree[2*treeIndex +1];
+		int right = tree[2*treeIndex +2];
+		
+		tree[treeIndex] = left<right?left:right;
+	}
+	
+	void populateArrayAsSegmentTreeForMinimum(int[] tree, int[] src, int start, int end, int treeIndex){
+		if(start == end){
+			tree[treeIndex] = src[start];
+			return;
+		}
+		
+		int mid = start + (end-start)/2;
+		
+		populateArrayAsSegmentTreeForMinimum(tree, src, start, mid, 2*treeIndex+1);
+		populateArrayAsSegmentTreeForMinimum(tree, src, mid+1, end, 2*treeIndex+2);
+		
+		int left = tree[2*treeIndex+1];
+		int right = tree[2*treeIndex+2];
+		
+		tree[treeIndex] = left<right?left:right;
+	}
+	
+	int getMinimumForRange(int[] tree, int treeIndex, int start, int end, int qStart, int qEnd){
+		if(start>qEnd || end<qStart){
+			return Integer.MAX_VALUE;
+		}
+		
+		if(qStart>=start && qEnd<=end){
+			return tree[treeIndex];
+		}
+		
+		int mid = start+(end-start)/2;
+		
+		if(qStart > mid){
+			// go in right subtree
+			getMinimumForRange(tree, 2*treeIndex+2, mid+1, end, qStart, qEnd);
+		}else if(qEnd <= mid){
+			// go in left subtree
+			getMinimumForRange(tree, 2*treeIndex+1, start, mid, qStart, qEnd);
+		}
+		
+		int left = getMinimumForRange(tree, 2*treeIndex+1, start, mid, qStart, qEnd);
+		int right = getMinimumForRange(tree, 2*treeIndex+2, mid+1, end, qStart, qEnd);
+		return left<right ? left: right;
+	}
+	
 
 	/*
 	 * Good link: https://leetcode.com/articles/recursive-approach-segment-trees-range-sum-queries-lazy-propagation/#1-build-the-tree-from-the-original-data
 	 * 
 	 */
 
-	void populateArrayAsSegmentTree(int[] tree, int[] src, int start, int end, int treeIndex){
+	void populateArrayAsSegmentTreeForSum(int[] tree, int[] src, int start, int end, int treeIndex){
 		try{
 
 			if(start == end){
@@ -34,15 +114,14 @@ public class SegmentTreeApplications {
 
 			int mid = start + (end-start)/2;
 
-			populateArrayAsSegmentTree(tree, src, start, mid, 2*treeIndex+1);
-			populateArrayAsSegmentTree(tree, src, mid+1, end, 2*treeIndex+2);
+			populateArrayAsSegmentTreeForSum(tree, src, start, mid, 2*treeIndex+1);
+			populateArrayAsSegmentTreeForSum(tree, src, mid+1, end, 2*treeIndex+2);
 			
 			/* After having the child nodes built (in the recursion calls just above this comment
 			 * we propagate the changes above in the merge operation just below this comment
 			 */
 
 			tree[treeIndex] = tree[2*treeIndex+1] + tree[2*treeIndex+2];// merge operation
-			System.out.println("Start: "+start+" End: "+end +" treeIndex: "+treeIndex+" Value: "+tree[treeIndex]);
 		}
 		catch(ArrayIndexOutOfBoundsException e){
 			System.out.println("arr index exception at "+treeIndex);
