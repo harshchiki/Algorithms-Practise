@@ -1,5 +1,10 @@
 package string;
-
+/*
+ * References:
+ * 1.) http://jakeboxer.com/blog/2009/12/13/the-knuth-morris-pratt-algorithm-in-my-own-words/
+ * (Good explanation of longest prefix which is also a suffix) 
+ *
+ */
 public class KMPAlgo {
 	public static void main(String[] args) {
 		String pattern = "world";
