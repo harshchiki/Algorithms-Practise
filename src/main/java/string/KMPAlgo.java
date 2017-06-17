@@ -9,16 +9,6 @@ public class KMPAlgo {
 	
 	
 	
-	void populateLPS(String pattern, int[] lps){
-		char[] chars = pattern.toCharArray();
-		int length = chars.length;
-		lps = new int[length];
-		
-		
-	}
-	
-	
-	
 	// Naive ALgo O(mn), KMP is O(m+n)
 	static void findMatchesUsingNaiveAlgo(char[] t, char[] p){
 		int currentIndex = 0;
