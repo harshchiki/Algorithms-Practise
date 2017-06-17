@@ -14,7 +14,7 @@ public class SegmentTreeApplications {
 		o.populateArrayAsSegmentTreeForSum(sumSegmentTreeArray, arr, 0, arr.length-1, 0);
 		System.out.println("Sum from 1 to 3 is: "
 				+o.getSumForRange(sumSegmentTreeArray, 0, 0, arr.length-1, 1, 3));
-		o.update(sumSegmentTreeArray, 0, 0, arr.length-1, 2, 6);
+		o.updateSumSegmentTree(sumSegmentTreeArray, 0, 0, arr.length-1, 2, 6);
 		System.out.println("Sum from 1 to 3 after update is: "
 				+o.getSumForRange(sumSegmentTreeArray, 0, 0, arr.length-1, 1, 3));
 		
@@ -183,7 +183,7 @@ public class SegmentTreeApplications {
 	 The leaf nodes represent the main array in fact -> hence an update should be done to the leaf node.
 	 Once done - change is propagated up to the root (using merge operations)
 	 */
-	void update(int[] tree, int treeIndex, int start, int end, int arrIndex, int val){
+	void updateSumSegmentTree(int[] tree, int treeIndex, int start, int end, int arrIndex, int val){
 		if(start == end){
 			tree[treeIndex] = val; // leaf node so replace the value
 			return;
@@ -192,9 +192,9 @@ public class SegmentTreeApplications {
 		int mid = start+(end-start)/2;
 		
 		if(arrIndex > mid){
-			update(tree, 2*treeIndex+2, mid+1, end, arrIndex, val);
+			updateSumSegmentTree(tree, 2*treeIndex+2, mid+1, end, arrIndex, val);
 		}else{
-			update(tree, 2*treeIndex+1, start, mid, arrIndex, val);
+			updateSumSegmentTree(tree, 2*treeIndex+1, start, mid, arrIndex, val);
 		}
 		
 		/*Similar to building the segtree as an array - we build the nodes below (in the if section just above this
