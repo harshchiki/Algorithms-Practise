@@ -1,18 +1,8 @@
 package dynamicprogramming;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LongestPalindromicSubstring {
 	int lo, maxLen;
 	public static void main(String[] s){
-		
-		Object[] objArray = new Long[3];
-		objArray[0] = "dfvsddsfbf"; // this might look an additional facility, but is BAD.
-		
-//		List<Object> lst = new ArrayList<Long>();//wont compile
-		
-		
 		System.out.println(new LongestPalindromicSubstring().longestPalindrome("babad"));
 	}
 

@@ -5,8 +5,7 @@ package backtracking;
  * Space complexity: O(n)
  */
 public class NQueenProblem {
-	public static void main(String[] args) {
-		NQueenProblem p = new NQueenProblem();
+	public static void main(String[] args) {		NQueenProblem p = new NQueenProblem();
 		Position[] pos = p.solve(4);
 		
 		if(pos != null){

@@ -10,6 +10,7 @@ public class SegmentTreeApplications {
 		/* Now the implementation of segment tree using an array 
 		 * (array representing segment tree */
 
+		/* RANGE SUM */
 		int[] sumSegmentTreeArray = new int[2*arr.length+1];
 		o.populateArrayAsSegmentTreeForSum(sumSegmentTreeArray, arr, 0, arr.length-1, 0);
 		System.out.println("Sum from 1 to 3 is: "
@@ -19,9 +20,7 @@ public class SegmentTreeApplications {
 				+o.getSumForRange(sumSegmentTreeArray, 0, 0, arr.length-1, 1, 3));
 		
 		
-		/*
-		 * For minimum
-		 */
+		/* RANGE MINIMUM */
 		int[] minSegmentTreeArray = new int[2*arr.length+1];
 		o.populateArrayAsSegmentTreeForMinimum(minSegmentTreeArray, arr, 0, arr.length-1, 0);
 		System.out.println("****************************");

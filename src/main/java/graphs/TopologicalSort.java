@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
+/*
+ * Time complexity: O(V+E)
+ */
 public class TopologicalSort {
 	
 	public static void main(String[] args) {
@@ -33,7 +36,10 @@ public class TopologicalSort {
 	}
 
 	void topologicalSort(Node[] nodes){
+		/* this stack contains nodes in the order of topological sort */
 		Stack<Node> stack = new Stack<>();
+		
+		/* set to remember which nodes have been visited already*/
 		Set<Node> visited = new HashSet<Node>();
 		
 		
@@ -43,6 +49,7 @@ public class TopologicalSort {
 			}
 		}
 		
+		/*printing the topological sort order*/
 		while(!stack.isEmpty()){
 			System.out.print(stack.pop().data+", ");
 		}
