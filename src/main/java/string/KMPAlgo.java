@@ -45,31 +45,31 @@ public class KMPAlgo {
 	}
 	
 	
-	static void KMPSearch(char[] text, char[] patt){
-		int tl = text.length;
-		int pl = patt.length;
+	static void KMPSearch(char[] text, char[] pattern){
+		int textLength = text.length;
+		int patternLength = pattern.length;
 		
-		int[] lps = findLPS(patt);
+		int[] lps = findLPS(pattern);
 		
-		int j = 0; // index for pattern
-		int i = 0; // index for text
+		int patternIndex = 0; // index for pattern
+		int textIndex = 0; // index for text
 		
-		while(i<tl){
-			if(patt[j] == text[i]){
-				i++;
-				j++;
+		while(textIndex<textLength){
+			if(pattern[patternIndex] == text[textIndex]){
+				textIndex++;
+				patternIndex++;
 			}
 			
-			if(j == pl){
-				System.out.println("Found at "+i);
-				j = lps[j-1];
+			if(patternIndex == patternLength){
+				System.out.println("Found at "+textIndex);
+				patternIndex = lps[patternIndex-1];
 			}
-			else if(i<tl && patt[j] != text[i]){
-				// mismatch after j matches
-				if(j == 0){
-					i++;
+			else if(textIndex<textLength && pattern[patternIndex] != text[textIndex]){
+				// mismatch after 'patternIndex' number of matches
+				if(patternIndex == 0){
+					textIndex++;
 				}else{
-					j = lps[j-1];
+					patternIndex = lps[patternIndex-1];
 				}
 			}
 		}
@@ -77,13 +77,13 @@ public class KMPAlgo {
 	}
 	
 	
-	static int[] findLPS(char[] p){
+	static int[] findLPS(char[] pattern){
 		int j =0, i =1;
-		int[] lps = new int[p.length];
+		int[] lps = new int[pattern.length];
 		lps[0] = 0;
 		
-		while(i<p.length){
-			if(p[i] == p[j]){
+		while(i<pattern.length){
+			if(pattern[i] == pattern[j]){
 				//match
 				lps[i] = j+1;
 				i++;
