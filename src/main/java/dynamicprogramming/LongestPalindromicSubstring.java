@@ -1,5 +1,26 @@
 package dynamicprogramming;
 
+/*
+ * Approach 1: Brute Force - find all substring - check if palindrome - retain max at every iteration
+ * 
+ * Approach 2: Recursion
+ * {
+ * if start == end -> return 1;
+ * 
+ * if char[start] == char[end] && j == (i+1) -> return 2;
+ * 
+ * if(char[start] == char[end) -> return lps(characters, start+1, end-1) +2;
+ * 
+ * return max(lps(characters, start+1, end), lps(characters, start, end-1)) 
+ * }
+ * 
+ * Approach 3: Memoization
+ * remember the results and apply in the recursive approach (approach 2) -
+ * would save a few CPU cycles
+ * 
+ *  Approach 4: Manacher's algorithm 
+ *  Time Complexity: O(n)
+ */
 public class LongestPalindromicSubstring {
 	int lo, maxLen;
 	public static void main(String[] s){
