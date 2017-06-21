@@ -7,7 +7,7 @@ package sorting;
  * and is highlighted when the number objects 
  * to sort is large.
  * 
- *
+ *Time: O(n log n)
  */
 public class MergeSort {
 	public static void main(String[] args) {

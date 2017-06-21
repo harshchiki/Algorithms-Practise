@@ -1,5 +1,8 @@
 package sorting;
 
+/*
+ * Time: O(n log n)
+ */
 public class QuickSort {
 	public static void main(String[] args) {
 //		int [] a = new int[]{10,9,5,6};
