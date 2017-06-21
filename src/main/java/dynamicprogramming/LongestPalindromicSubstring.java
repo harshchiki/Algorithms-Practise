@@ -24,9 +24,38 @@ package dynamicprogramming;
 public class LongestPalindromicSubstring {
 	int lo, maxLen;
 	public static void main(String[] s){
-		System.out.println(new LongestPalindromicSubstring().longestPalindrome("babad"));
+//		System.out.println(new LongestPalindromicSubstring().longestPalindrome("babad"));
+		String str = "dfsfvdbabaddfsfg";
+		System.out.println(new LongestPalindromicSubstring()
+				.getLengthOfLongestPalindrome(str.toCharArray(), 0,(str.length()-1)));
 	}
 
+	int getLengthOfLongestPalindrome(char[] a, int start, int end){
+		if(start<0 || end < 0) {
+			return 0;
+		}
+		
+		if(start == end){
+			return 1;
+		}
+		
+		if (start>end){
+			return -1;
+		}
+		
+		if(a[start] == a[end]){
+			return getLengthOfLongestPalindrome(a, start+1, end-1)+2;
+		}else{
+			return max(getLengthOfLongestPalindrome(a, start, end-1),
+					getLengthOfLongestPalindrome(a, start+1, end));
+		}
+		
+	}
+	
+	int max(int a, int b){
+		return a>b?a:b;
+	}
+	
 	public String longestPalindrome(String s) {
 		String pal = "";
 		int length = s.length();

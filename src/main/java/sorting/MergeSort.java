@@ -7,13 +7,12 @@ package sorting;
  * and is highlighted when the number objects 
  * to sort is large.
  * 
- * @author Harsh
  *
  */
 public class MergeSort {
 	public static void main(String[] args) {
-		int[] arr = new int[]{5,9,1,7,3};
-		mergeSort(arr,0,5);
+		int[] arr = new int[]{5,9,1,7,3,2,10};
+		mergeSort(arr,0,arr.length);
 		System.out.println("Sorted:");
 		for(int i : arr){
 			System.out.print(i+" ");

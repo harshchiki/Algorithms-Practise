@@ -1,6 +1,6 @@
 package trees;
 
-public class CheckIfATreeIdBalancedOrNot {
+public class CheckIfATreeIsBalancedOrNot {
 	public static void main(String[] args) {
 		TreeNode r1 = new TreeNode(1);
 		TreeNode r2 = new TreeNode(2);

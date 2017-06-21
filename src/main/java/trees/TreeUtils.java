@@ -39,8 +39,10 @@ public class TreeUtils {
 		
 		n2.left = n4;
 		n2.right = n5;
-		n3.left = n6;
+//		n3.left = n6;
 		n3.right = n7;
+		
+		n5.left = n6;
 		
 		return n1;
 	}
