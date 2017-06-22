@@ -46,6 +46,10 @@ public class BoundaryTraversal {
 	static void printRightSubtree(TreeNode node){
 		if(node != null){
 			if(node.right != null){
+				/*
+				 * ensuring bottom up order by printing after,
+				 * but before calling on the right
+				 */
 				printRightSubtree(node.right);
 				System.out.print(node.data+" ");
 			}else if(node.left != null){
