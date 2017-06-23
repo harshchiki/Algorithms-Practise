@@ -27,6 +27,13 @@ public class ChessKnightProblem {
 		findFinal(knightPosition, finalPosition);
 	}
 	
+	/*
+	 * src is where the knight is placed
+	 * dest is where the knight is to reach
+	 * 
+	 * Point - x,y, distance from start, and parent
+	 * src - distance from start = 0 and parent = null
+	 */
 	static void findFinal(Point src, Point dest){
 		if(src == null || dest == null){
 			throw new RuntimeException("Null points");
@@ -36,18 +43,25 @@ public class ChessKnightProblem {
 			throw new RuntimeException("Illegal Points");
 		}
 		
+		System.out.println("Source = "+src);
+		System.out.println("Dest = "+dest);
+		
 		Set<Point> visitedSet = new HashSet<Point>();
 		Queue<Point> queue = new LinkedList<Point>();
 		
 		queue.add(src);
 		
 		while(!queue.isEmpty()){
-			Point polledPoint = queue.poll();
+			Point polledPoint = queue.poll(); // CHECK IF DEST OR NOT - return on first occurrence
 
+			// since polledPoint has already been added to queue, its distance and parent must have been updated for sure
 			if(polledPoint.equals(dest)){
+				// Destination found
 				System.out.println("Distance from Source = "+polledPoint.distFromStart);
 				
 				Point p = polledPoint;
+				
+				// stack to reverse the order from src to dest (since we are going back)
 				Stack<Point> stack = new Stack<Point>();
 				while(null != p){
 					stack.push(p);
@@ -55,7 +69,7 @@ public class ChessKnightProblem {
 				}
 				
 				while(!stack.isEmpty()){
-					System.out.println(stack.pop());
+					System.out.print("("+stack.pop()+") ");
 				}
 				
 				return;
@@ -63,6 +77,7 @@ public class ChessKnightProblem {
 			
 			if(!visitedSet.contains(polledPoint)){
 				visitedSet.add(polledPoint);
+				// getAdjacent nodes gets me all the possible points the knight can go from here (taking 2 and half steps)
 				for(Point p : getAdjacentNodes(polledPoint)){
 					p.distFromStart = polledPoint.distFromStart + 1;
 					p.parent = polledPoint;
@@ -73,14 +88,25 @@ public class ChessKnightProblem {
 		System.out.println("No possible path between source and destination");
 	}
 	
+	/*
+	 * 16 possible points the knight can go. TODO - such points have to be added
+	 */
 	static List<Point> getAdjacentNodes(Point p){
 		List<Point> list = new LinkedList<Point>();
 		
 		int x = p.x, y = p.y;
 		
+		/*
+		 *  |
+		 *   --
+		 */
 		Point point = new Point(x-2, y-1);
 		addIfValid(list, point);
 		
+		/*
+		 *   |
+		 * --
+		 */
 		point = new Point(x-2, y+1);
 		addIfValid(list, point);
 		

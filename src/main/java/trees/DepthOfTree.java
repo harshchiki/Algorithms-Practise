@@ -10,6 +10,7 @@ public class DepthOfTree {
 		System.out.println("Depth = "+recursiveGetDepth(TreeUtils.getTree()));
 	}
 	
+	// iterative
 	public static int getDepth(TreeNode root){
 		int depth = 0;
 		

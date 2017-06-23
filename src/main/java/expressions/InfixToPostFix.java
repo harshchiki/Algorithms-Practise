@@ -17,6 +17,9 @@ public class InfixToPostFix {
 		InfixToPostFix obj = new InfixToPostFix();
 
 		obj.convert(exp.toCharArray());
+		obj = new InfixToPostFix();
+		System.out.println();
+		obj.convert("A*B+C".toCharArray());
 	}
 
 	/*
@@ -35,19 +38,27 @@ public class InfixToPostFix {
 	 * 				- else TOS > this, pop stack and add to postfix, and push this to stack
 	 */
 	void convert(char[] infix){
+		// stack used to store the operators
 		Stack<Character> s = new Stack<>();
+		
 		for(int i=0;i<infix.length;i++){
 			char c = infix[i];
-
+			
 			Character character = Character.valueOf(c);
 			if(isOperand(c)){
+				// if is an operand (something which is none of math operator & not brace 
+				// - blindly add to the post fix expression
 				postfix.add(character);
 			}else{
 				if(isOpenBrace(c)){
+					// it is not an operand, but an open brace
+					// push the open brace to stack
 					s.push(character);
 				} else if(isClosingBrace(c)){
+					// closing brace - so back track till the '(' is encountered or empty (which is erroneous, '(' has to be there)
 					while(!s.isEmpty() && !s.peek().equals(Character.valueOf('('))){
 						// ! on s.peek, to not add the opening brace - it simple has to be popped out.
+						// but don't add brace (post fix expression don't need brace)
 						postfix.add(s.pop());
 					}
 					if(!s.isEmpty() && s.peek().equals(Character.valueOf('('))){
@@ -56,7 +67,7 @@ public class InfixToPostFix {
 					}
 				} else{
 					// operator
-					Character peek = s.size()>0 ?s.peek() : null;
+//					Character peek = s.size()>0 ?s.peek() : null;
 
 					if(s.isEmpty()){
 						// nothing in stack, so feel free to push the operator

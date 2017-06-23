@@ -32,6 +32,7 @@ public class LowestCommonAncestor {
 				index++;
 				if(node.equals(node1)|| node.equals(node2)){
 					lowestCommonAncestor = node;
+					break;
 				}
 			}
 			break;
@@ -95,6 +96,10 @@ public class LowestCommonAncestor {
 
 	}
 
+	/*
+	 * could have added a boolean flag, both found -
+	 *  to escape out iterations after finding both in the tree, which could have been
+	 */
 	static void workoutAllPathsContainingRequiredNodes(TreeNode root, TreeNode[] path, int pathLen,
 			TreeNode node1, TreeNode node2){
 		/*

@@ -4,6 +4,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+/*
+ * pre-requisite - lowest common ancestor and find all paths in a tree
+ * 
+ */
 public class DistanceBetweenTwoNodesInATree {
 	public static void main(String[] args) {
 		TreeNode root = TreeUtils.getTree();

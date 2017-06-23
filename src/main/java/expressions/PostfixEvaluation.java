@@ -18,7 +18,15 @@ public class PostfixEvaluation {
 		new PostfixEvaluation().evaluation(postfix);
 	}
 
+	/*
+	 * A list of string (basically character) is passed as postFix expression (argument)
+	 * 
+	 * For eg. AB*C+ - we go left to right, so first comes A, and by all means will not be an operator
+	 * 
+	 * At the end, the stack will contain only 1 element, which is the result - evaluation
+	 */
 	void evaluation(List<String> postfix){
+		// stack is used to store the operands
 		Stack<String> s = new Stack<>();
 
 		for(int i = 0;i<postfix.size();i++){
