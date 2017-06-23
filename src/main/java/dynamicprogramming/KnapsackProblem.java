@@ -16,7 +16,7 @@ public class KnapsackProblem {
 		}
 
 		if(wt[n-1] > W){
-			// skip last object
+			// skip last object - because it can never be picked, its weight is greater than capacity
 			return knapsack(W, wt, val, n-1);
 		}else{
 			// consider having the last object, and not having (0-1) property
