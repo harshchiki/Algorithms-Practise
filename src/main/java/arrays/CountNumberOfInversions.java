@@ -7,10 +7,13 @@ package arrays;
  * (6,1), (6,2), (6,4), (9,2), (9,4) -> 5
  * 
  * Inversion count of an array defines how close or how far the array is sorted.
+ * If the array is sorted, the inversion count is 0.
  */
 public class CountNumberOfInversions {
 	class UsingMergeSort{
-
+		// http://www.geeksforgeeks.org/counting-inversions/
+		// Time complexity: O(n log n)
+		// Space complexity: O(n) <- tmp array
 		int getCountOfInversionsUsingMergeSortApproach(int[] a,int[] tmp, int start, int end){
 			if(end > start){
 				int count = 0;
@@ -59,6 +62,14 @@ public class CountNumberOfInversions {
 			return count;
 		}
 
+	}
+	
+	class UsingSelfBalancingBST{
+		// http://www.geeksforgeeks.org/count-inversions-in-an-array-set-2-using-self-balancing-bst/
+	}
+	
+	class UsingBIT{
+		// http://www.geeksforgeeks.org/count-inversions-array-set-3-using-bit/
 	}
 	public static void main(String[] args) {
 		int[] a = {6,1,9,2,4};
