@@ -29,6 +29,10 @@ public class MergeTwoSortedLinkedLists {
 		
 	}
 	
+	/*
+	 * Time comp: O(n)
+	 * Space comp: O(1)
+	 */
 	Node merge(Node l1, Node l2){
 		Node p1 = l1;
 		Node p2 = l2;
