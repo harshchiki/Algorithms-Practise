@@ -8,12 +8,12 @@ public class EggDroppingProblem {
 		EggDroppingProblem o = new EggDroppingProblem();
 		int floors = 10;
 		int eggs = 2;
-		System.out.println(o.eggDrop(eggs, floors));
+		System.out.println(o.recursiveEggDrop(eggs, floors));
 		
 	}
 	/* Function to get minimum number of trials needed in worst
 	  case with n eggs and k floors */
-	int eggDrop(int eggs, int floors)
+	int recursiveEggDrop(int eggs, int floors)
 	{
 	    // If there are no floors, then no trials needed. OR if there is
 	    // one floor, one trial needed.
@@ -30,7 +30,7 @@ public class EggDroppingProblem {
 	    // return the minimum of these values plus 1.
 	    for (x = 1; x <= floors; x++)
 	    {
-	        res = max(eggDrop(eggs-1, x-1), eggDrop(eggs, floors-x));
+	        res = max(recursiveEggDrop(eggs-1, x-1), recursiveEggDrop(eggs, floors-x));
 	        if (res < min)
 	            min = res;
 	    }
@@ -41,4 +41,9 @@ public class EggDroppingProblem {
 	int max(int a, int b) {
 		return a>b?a:b;
 	}
+	
+	/*
+	 * DP version to have a 2d array, [eggs+1][floors+1]
+	 * 1 + max(eggFloor[i-1][x-1], eggFloor[i][j-x]); i iterates by eggs, and j by floors
+	 */
 }
