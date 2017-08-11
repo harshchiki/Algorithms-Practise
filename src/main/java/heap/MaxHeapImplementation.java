@@ -7,6 +7,7 @@ public class MaxHeapImplementation {
 	public static void main(String[] args) {
 		int[] a = new int[]{9,7,5,2};
 		
+		
 		MaxHeapImplementation o = new MaxHeapImplementation();
 		o.length = a.length;
 		o.heap = o.buildMaxHeap(a);
@@ -79,7 +80,8 @@ public class MaxHeapImplementation {
 		int rightIndex = 2*i+1;
 		
 		int largest;
-		if(leftIndex <= length && a[leftIndex] > a[i]){
+		if(leftIndex <= length // boundary condition
+				&& a[leftIndex] > a[i]){
 			largest = leftIndex;
 		}else{
 			largest = i;
