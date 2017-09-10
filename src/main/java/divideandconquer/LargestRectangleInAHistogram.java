@@ -12,7 +12,6 @@ public class LargestRectangleInAHistogram {
 	
 	public static void main(String[] args) {
 		System.out.println(new LargestRectangleInAHistogram().getLargestREctangleInAHistogram(new int[]{6, 2, 5, 4, 5, 1, 6}));
-		System.out.println(getMaxArea(new int[]{6, 2, 5, 4, 5, 1, 6}, 7));
 	}
 	
 	
@@ -34,14 +33,13 @@ public class LargestRectangleInAHistogram {
 				 */
 				System.out.println();
 				System.out.println("PUSHED");
-				printStack(s);
+				printStack(s, maxArea, areaWithTop, i);
 				System.out.println();
 			} else {
 				int top = s.pop();
 				System.out.println();
 				System.out.println("POPPED");
-				printStack(s);
-				System.out.println();
+				
 				/* top which is removed, is considered the smallest bar.
 				 * Since it is the smallest bar, the area will be calculated
 				 * by multiplying it with the number of bars traversed so far
@@ -52,6 +50,8 @@ public class LargestRectangleInAHistogram {
 				if(maxArea < areaWithTop) {
 					maxArea = areaWithTop;
 				}
+				printStack(s, maxArea, areaWithTop, i);
+				System.out.println();
 			}
 		}
 		
@@ -71,7 +71,7 @@ public class LargestRectangleInAHistogram {
 		return maxArea;
 	}
 	
-	void printStack(Stack s) {
-		System.out.println(Arrays.toString(s.toArray()));
+	void printStack(Stack s, int areaWithTop, int maxArea, int i) {
+		System.out.println(Arrays.toString(s.toArray())+" areaWithTop = "+areaWithTop + " maxArea = "+maxArea + " array index = "+ i);
 	}
 }
