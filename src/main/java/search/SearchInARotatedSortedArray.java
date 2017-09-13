@@ -27,10 +27,23 @@ public class SearchInARotatedSortedArray {
 			return pivot;
 		}
 		
+		// given that we have a pivot in hand here
+		// idea of looking to hte left of pivot makes sense
+		// only when the first element is less than key.
+		// this is because element (not elements) to the right
+		// of pivot is smaller than the a[pivot]
+		// so certainly the element at the last position is
+		// smaller than the first element in the array
+		// So, if first element is less than key, we have to look at values
+		// smaller than first element, which certainly would
+		// exist on the right of the pivot.
 		if(a[0] <= key) {
 			return BinarySearch.binarySearch(a, 0, pivot-1,  key);
 		}
 		
+		
+		// obviously, we are left with only one condition,
+		// where right of the pivot elements are to be considered.
 		return BinarySearch.binarySearch(a, pivot+1, a.length-1, key);
 	}
 	
