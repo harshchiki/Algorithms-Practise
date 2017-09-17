@@ -135,6 +135,7 @@ public class LowestCommonAncestor {
 			}
 			paths.add(lst);
 		}else{
+			// had it been an n-ary tree, it would have been for all children (the strategy would just be the same.
 			workoutAllPathsContainingRequiredNodes(root.left, path, pathLen, node1, node2);
 			workoutAllPathsContainingRequiredNodes(root.right, path, pathLen, node1, node2);
 		}
