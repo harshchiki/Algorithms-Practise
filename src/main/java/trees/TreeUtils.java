@@ -46,6 +46,29 @@ public class TreeUtils {
 		
 		return n1;
 	}
+	
+	public static TreeNode getTreeWithParentsPopulated(TreeNode root) {
+		// makes changes in the tree passed
+		root.parent = null;
+		populateParent(root);
+		return root;
+		
+	}
+	
+	private static void populateParent(TreeNode root) {
+		if(root == null) return;
+		
+		if(root.left != null) {
+			root.left.parent = root;
+			populateParent(root.left);
+		}
+		
+		if(root.right != null) {
+			root.right.parent = root;
+			populateParent(root.right);
+		}
+		
+	}
 }
 
 
