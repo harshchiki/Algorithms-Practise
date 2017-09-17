@@ -1,5 +1,8 @@
 package otherproblems;
 
+import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
+
 public class CheckIfANumberIsAAPalindrome {
 	public static void main(String[] args) {
 		CheckIfANumberIsAAPalindrome c = new CheckIfANumberIsAAPalindrome();

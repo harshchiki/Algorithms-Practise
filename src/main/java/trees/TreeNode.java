@@ -10,6 +10,12 @@ public class TreeNode{
 		this.data = data;
 	}
 	
+	TreeNode(TreeNode node){
+		this(node.data);
+		this.left = node.left;
+		this.right = node.right;
+	}
+	
 	@Override
 	public boolean equals(Object node){
 		return this.data == ((TreeNode)node).data;
