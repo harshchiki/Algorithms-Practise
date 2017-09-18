@@ -53,6 +53,8 @@ public class DepthFirstSearchWithCycleDetection {
 				dfs(n,visited);
 			}
 		}else{
+			// the moment a visited node is visited again
+			// it indicates a cycle
 			System.out.println();
 			System.out.println("Presence of cycle at "+node.data);
 		}
