@@ -18,7 +18,20 @@ public class DetectCycleInList {
 		n5.next = n2;
 
 		DetectCycleInList o = new DetectCycleInList();
+		detectCycleAndRemoveLinkUsingExtraSpace(n1, o);
+	}
+
+	private static void detectCycleAndRemoveLinkUsingExtraSpace(Node n1, DetectCycleInList o) {
 		Node cycle = o.detectCycleInLinkedList(n1);
+		
+		// if cycle is null -> there is no cycle in the linked list
+		
+		if(cycle != null) {
+			removingCycleUsingExtraSpace(n1, o, cycle);
+		}
+	}
+
+	private static void removingCycleUsingExtraSpace(Node n1, DetectCycleInList o, Node cycle) {
 		if(cycle != null){
 			List<Node> nodesInCycle = o.getNodesInCycle(n1, cycle);
 			o.removeCycle(n1, nodesInCycle);
@@ -79,4 +92,6 @@ public class DetectCycleInList {
 		}
 		return null;
 	}
+	
+	
 }
