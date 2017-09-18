@@ -3,6 +3,8 @@ package trees;
 import java.util.LinkedList;
 import java.util.List;
 
+import heap.MaxHeapImplementation;
+
 /*
  * Problem: Left view of a binary tree
  * Time: O(n)
@@ -39,5 +41,8 @@ public class LeftViewOfABinaryTree {
 		System.out.println();
 		System.out.println("Printing left view");
 		l.print();
+		System.out.println();
+		// maxDepthExplored holds the value of the length of the longest path in a tree
+		System.out.println("Length of the longest path "+ l.maxDepthExplored);
 	}
 }
