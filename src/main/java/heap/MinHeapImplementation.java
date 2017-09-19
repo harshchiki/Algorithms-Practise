@@ -87,10 +87,14 @@ public class MinHeapImplementation {
 			smallest = index;
 		}
 		
+		
+		// heap[rightIndex] is to be compared with heap[smallest] not heap[index]
 		if(rightIndex < length
 				&& heap[rightIndex] < heap[smallest]) {
 			smallest = rightIndex;
 		}
+		// no else condition like that in left
+		
 		if(smallest != index) {
 			swap(heap, index, smallest);
 			minHeapify(heap, smallest, length);
