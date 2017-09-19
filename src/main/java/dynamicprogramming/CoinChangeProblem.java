@@ -19,8 +19,11 @@ public class CoinChangeProblem {
 		CoinChangeProblem o = new CoinChangeProblem();
 		System.out.println(o.noOfWaysToMakeChangeRecursive(new int[]{1, 2, 3}, 3, 4));
 		System.out.println(o.noOfWaysToMakeChangeDP(new int[]{3,5,10}, 20));
+		System.out.println(o.noOfWaysToMakeChangeDPAppraoch2(new int[]{3,5,10}, 20));
 	}
 
+	// coins array -> variety (by their value) of coins(DENOMINATIONS). number of coins available is infinite.
+	// m is the index of last coin
 	int noOfWaysToMakeChangeRecursive(int[] coins, int m, int totalValue){
 		if(totalValue == 0){
 			return 1; // only way is to give nothing
@@ -64,5 +67,48 @@ public class CoinChangeProblem {
 		}
 		
 		return table[value];
+	}
+	
+	/*
+	 * Reference: https://www.youtube.com/watch?v=Y0ZqKpToTic&feature=youtu.be
+	 */
+	int noOfWaysToMakeChangeDPAppraoch2(int[] coins, int value) {
+		int[][] table = new int[coins.length+1][value+1];
+		
+		for(int i = 0;i<coins.length;i++) {
+			table[i][0] = 0;
+		}
+		
+		for(int j = 0;j<=value;j++) {
+			table[0][j] = 0;
+		}
+		
+		for(int i = 1;i<=coins.length;i++) {
+			for(int j = 1;j<=value;j++) {
+				int coin = coins[i-1];
+				int valueRequired = j;
+				
+				if(valueRequired <= coin) {
+					table[i][j] = table[i-1][j];
+				}else {
+					int valueToLookup = table[i][j-coin];
+					int upperValue = table[i-1][j];
+					table[i][j] = (valueToLookup < upperValue ? valueToLookup : upperValue)+1;
+				}
+			}
+		}
+		System.out.println("#############");
+		printSol(table);
+		System.out.println("#############");
+		return table[coins.length][value];
+	}
+	
+	void printSol(int[][] table) {
+		for(int i = 0;i<table.length;i++) {
+			for(int j = 0;j<table[0].length;j++) {
+				System.out.print(table[i][j]);
+			}
+			System.out.println();
+		}
 	}
 }
