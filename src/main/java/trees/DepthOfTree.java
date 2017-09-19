@@ -1,6 +1,8 @@
 package trees;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 
 public class DepthOfTree {
 	public static void main(String[] args) {
@@ -45,6 +47,7 @@ public class DepthOfTree {
 		return depth;
 	}
 	
+	// post order traversal is to be used
 	public static int recursiveGetDepth(TreeNode root){
 		if(root == null){
 			return 0;

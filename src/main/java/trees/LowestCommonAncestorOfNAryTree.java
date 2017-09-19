@@ -17,6 +17,7 @@ public class LowestCommonAncestorOfNAryTree {
 	
 	
 	
+	
 	void printAllPaths() {
 		allPaths.stream().forEach(list -> {
 			list.stream().forEach(node -> System.out.print(node.data +" "));
