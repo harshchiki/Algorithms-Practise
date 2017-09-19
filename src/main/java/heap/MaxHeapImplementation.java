@@ -12,7 +12,7 @@ public class MaxHeapImplementation {
 		o.length = a.length;
 		o.heap = o.buildMaxHeap(a);
 		System.out.println();
-		o.getMin();
+		o.getMax();
 		o.extractMin();
 		o.insert(18);
 		o.delete();
@@ -29,8 +29,8 @@ public class MaxHeapImplementation {
 		System.out.println();
 		System.out.println("********************");
 	}
-	int getMin(){
-		System.out.println("Min = "+heap[1]);
+	int getMax(){
+		System.out.println("Max = "+heap[1]);
 		return heap[1];
 	}
 	
