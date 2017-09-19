@@ -28,7 +28,7 @@ public class SearchInARotatedSortedArray {
 		}
 		
 		// given that we have a pivot in hand here
-		// idea of looking to hte left of pivot makes sense
+		// idea of looking to the left of pivot makes sense
 		// only when the first element is less than key.
 		// this is because element (not elements) to the right
 		// of pivot is smaller than the a[pivot]
